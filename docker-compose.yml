@@ -1,0 +1,30 @@
+version: '3.5'
+#a ideia é ter dois containers, um rodando apenas o postgres e o outro que
+# iremos usar para desenvolvimento
+services:
+
+  db_postgres:
+    image: postgres
+    container_name: "postgres_container"
+    #tradicionais usuário, senha e nome do banco. Mude como desejar
+    environment:
+      POSTGRES_USER: aluno
+      POSTGRES_PASSWORD: aluno123
+      POSTGRES_DB: aluno
+    #espelhamos a porta 5432 do container para a porta 5432 da máquina hospedeira (provavelmente seu localhost)
+    #assim você poderá se conectar ao banco da máquina hospedeira
+    ports:
+      - 5432:5432
+
+  dev:
+    container_name: "aluno_dev"
+    # roda o Dockerfile (inteiro)
+    build: .
+    # cria um volume dentro do contanier que conecta-o com a pasta local (onde está o Dockerfile)
+    # assim, arquivos criados fora do container podem ser acessados pelo container e vice-versa
+    volumes:
+    - .:/home/aluno
+    # containers foram feitos para hospedar serviços (como servidores), então se não instruirmos
+    # este container a rodar algo, ele parará imediatamente. Um workaround para isso é
+    # fazer ele rodar um programa que não faz nada.
+    command: bash -c "javac Sleep.java && java Sleep"
