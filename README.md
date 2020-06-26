@@ -6,6 +6,10 @@
  - Docker: https://docs.docker.com/engine/install/
  - Docker Compose: https://docs.docker.com/compose/install/
 
+*Atenção* Se estiver usando Linux (espero que esteja) não esqueça de adicionar o grupo docker e seu usuário a ele:
+https://docs.docker.com/engine/install/linux-postinstall/
+
+
 - Ter algum cliente Postgres instalado
 
 ### Construindo e subindo os containers ###
@@ -16,7 +20,7 @@ No diretório com o `Dockerfile` e o `docker-compose.yml`
 $ docker-compose build
 ```
 
-Isso vai puxar a imagem openjdk:8 (Java 8 instalado num Debian 10 do dockerhub https://hub.docker.com/ (verifique para mais imagens legais))
+Isso irá puxar a imagem openjdk:8 (Java 8 instalado num Debian 10 do dockerhub https://hub.docker.com/ (verifique para mais imagens legais))
 
 Em seguida:
 
@@ -24,7 +28,7 @@ Em seguida:
 $ docker-compose up
 ```
 
-Isso vai puxar a imagem Postgres e iniciar o servidor Postgres. Vale a pena dar uma lida nas linhas de log que vão aparecendo, pois indicam como o Postgres está sendo configurado.
+Isso irá puxar a imagem Postgres e iniciar o servidor Postgres. Vale a pena dar uma lida nas linhas de log que vão aparecendo, pois indicam como o Postgres está sendo configurado.
 
 Se tudo deu certo você deve ler uma mensagem do log do container de desenvolvimento "Sleeping", e do container do Postgres "database system is ready to accept connections".
 
